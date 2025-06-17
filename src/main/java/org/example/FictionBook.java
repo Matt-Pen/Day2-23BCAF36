@@ -71,19 +71,32 @@ public class FictionBook {
             }
 
         }
-        catch (Exception e){
+        catch (Exception e) {
             System.out.println(e);
         }
     }
+    public void deletebook(){
+        Scanner scan= new Scanner(System.in);
+        String uri = "mongodb://localhost:27017/";
+        try{
+            MongoClient mongoClient= MongoClients.create(uri);
+            MongoDatabase database=mongoClient.getDatabase("Library");
+            MongoCollection<Document> booksCollection = database.getCollection("Books");
 
 
+            System.out.println("Enter the Title of the Document to be deleted: ");
+            String ch="";
 
+            ch=scan.nextLine();
+            Bson filter = Filters.eq("Title", ch);
+            booksCollection.deleteOne(filter);
+            System.out.println("Deleted Successfully");
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
 
-
-
-
-
-
+    }
 
 
 }

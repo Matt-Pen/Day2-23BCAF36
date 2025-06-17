@@ -24,7 +24,8 @@ public class Main {
 //
 //        bk.updatebook();
         FictionBook fbk=new FictionBook();
-        fbk.findbook();
+//        fbk.findbook();
+        fbk.deletebook();
 
     }
 
