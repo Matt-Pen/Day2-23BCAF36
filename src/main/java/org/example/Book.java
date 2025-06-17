@@ -6,8 +6,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
-import com.mongodb.client.result.InsertOneResult;
-import com.mongodb.client.result.UpdateResult;
+
+
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -49,7 +49,7 @@ public class Book {
         catch (Exception e){
             System.out.println(e);
         }
-//test comment
+//test comment 2
 
     }
     public void updatebook() {
@@ -78,7 +78,7 @@ public class Book {
                     String ntitle= scan.nextLine();
                     Bson filter = Filters.eq("Title",title);
                     Bson update= Updates.set("Title",ntitle);
-                    UpdateResult result = booksCollection.updateOne(filter, update);
+                    booksCollection.updateOne(filter, update);
                     break;
                 case  2:
                     System.out.println("Enter the Title of the Book:");
@@ -88,7 +88,7 @@ public class Book {
                     String ntitle2= scan.nextLine();
                     Bson filter2 = Filters.eq("Title",title2);
                     Bson update2= Updates.set("Author",ntitle2);
-                    UpdateResult result2 = booksCollection.updateOne(filter2, update2);
+                    booksCollection.updateOne(filter2, update2);
                     break;
                 case 3:
                     System.out.println("Enter the Title of the Book:");
@@ -108,15 +108,15 @@ public class Book {
 
                     Bson filter3 = Filters.eq("Title",title3);
                     Bson update3= Updates.set("Category",ntitle3);
-                    UpdateResult result3 = booksCollection.updateOne(filter3, update3);
+                    booksCollection.updateOne(filter3, update3);
                     break;
 
             }
 
 
         }
-        catch (Exception e){
-            System.out.println(e);
+        catch (Exception ex){
+            System.out.println(ex);
         }
 
     }

@@ -66,9 +66,7 @@ public class FictionBook {
                     Bson filter3= Filters.eq("Category",ctgr);
                     booksCollection.find(filter3).forEach(doc -> System.out.println(doc.toJson()));
                     break;
-
-
-            }
+                }
 
         }
         catch (Exception e) {

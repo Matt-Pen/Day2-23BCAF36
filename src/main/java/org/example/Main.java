@@ -10,22 +10,41 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-//        String uri = "mongodb://localhost:27017/";
-//        try{
-//            MongoClient mongoClient= MongoClients.create(uri);
-//            MongoDatabase database=mongoClient.getDatabase("Library");
-//            MongoCollection<Document> booksCollection = database.getCollection("Books");
-//        }
-//        catch (Exception e){
-//            System.out.println(e);
-//        }
+        Scanner scan= new Scanner(System.in);
         Book bk= new Book();
-//        bk.insertbook();
-//
-//        bk.updatebook();
         FictionBook fbk=new FictionBook();
-//        fbk.findbook();
-        fbk.deletebook();
+        while(true){
+            System.out.println("Enter the field to update:");
+            System.out.println("1. Insert a new book.");
+            System.out.println("2. Find an existing book.");
+            System.out.println("3. Update book details.");
+            System.out.println("4. Delete book details.");
+            int ch;
+            ch=scan.nextInt();
+            switch(ch){
+                case 1:
+                    bk.insertbook();
+                    break;
+                case 2:
+                    fbk.findbook();
+                    break;
+                case 3:
+                    bk.updatebook();
+                    break;
+                case 4:
+                    fbk.deletebook();
+                    break;
+
+
+            }
+        }
+//        Book bk= new Book();
+//   bk.insertbook();
+
+//        bk.updatebook();
+//        FictionBook fbk=new FictionBook();
+//    fbk.findbook();
+//        fbk.deletebook();
 
     }
 
