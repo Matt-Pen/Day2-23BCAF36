@@ -94,10 +94,20 @@ public class Book {
                     System.out.println("Enter the Title of the Book:");
                     String title3= scan.nextLine();
 
-                    System.out.println("Enter the new Author name:");
-                    String ntitle3= scan.nextLine();
+                    System.out.println("Enter the new Category name:");
+                    int ch1=scan.nextInt();
+                    System.out.println("1. Fiction");
+                    System.out.println("2. Non-Fiction");
+                    String ntitle3= "";
+                    if(ch1==1)
+                        ntitle3="Fiction";
+                    else if(ch1==2)
+                        ntitle3="Non-Fiction";
+                    else
+                        System.out.println("Enter a valid option.");
+
                     Bson filter3 = Filters.eq("Title",title3);
-                    Bson update3= Updates.set("Author",ntitle3);
+                    Bson update3= Updates.set("Category",ntitle3);
                     UpdateResult result3 = booksCollection.updateOne(filter3, update3);
                     break;
 

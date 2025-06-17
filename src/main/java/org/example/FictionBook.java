@@ -36,10 +36,36 @@ public class FictionBook {
 
                     Bson filter= Filters.eq("Title",title);
                     booksCollection.find(filter).forEach(doc -> System.out.println(doc.toJson()));
+                    break;
 
                 case  2:
+                    System.out.println("Enter the Author of the Book:");
+                    String title2= scan.nextLine();
+
+                    Bson filter2= Filters.eq("Author",title2);
+                    booksCollection.find(filter2).forEach(doc -> System.out.println(doc.toJson()));
+                    break;
 
                 case 3:
+                    System.out.println("Enter the Category of the Book:");
+
+
+                    System.out.println("select the category of the book: ");
+                    System.out.println("1. Fiction");
+                    System.out.println("2. Non-Fiction");
+                    int ch1= scan.nextInt();
+                    String ctgr=" ";
+
+                    if(ch1==1)
+                        ctgr="Fiction";
+                    else if(ch1==2)
+                        ctgr="Non-Fiction";
+                    else
+                        System.out.println("Enter a valid choice.");
+
+                    Bson filter3= Filters.eq("Category",ctgr);
+                    booksCollection.find(filter3).forEach(doc -> System.out.println(doc.toJson()));
+                    break;
 
 
             }

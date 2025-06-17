@@ -21,7 +21,10 @@ public class Main {
 //        }
         Book bk= new Book();
 //        bk.insertbook();
-        bk.updatebook();
+//
+//        bk.updatebook();
+        FictionBook fbk=new FictionBook();
+        fbk.findbook();
 
     }
 
