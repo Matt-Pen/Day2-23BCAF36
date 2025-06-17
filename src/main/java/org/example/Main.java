@@ -38,13 +38,7 @@ public class Main {
 
             }
         }
-//        Book bk= new Book();
-//   bk.insertbook();
-
-//        bk.updatebook();
-//        FictionBook fbk=new FictionBook();
-//    fbk.findbook();
-//        fbk.deletebook();
+//
 
     }
 
