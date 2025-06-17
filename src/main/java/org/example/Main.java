@@ -14,7 +14,7 @@ public class Main {
         Book bk= new Book();
         FictionBook fbk=new FictionBook();
         while(true){
-            System.out.println("Enter the field to update:");
+            System.out.println("Enter your choice:");
             System.out.println("1. Insert a new book.");
             System.out.println("2. Find an existing book.");
             System.out.println("3. Update book details.");
