@@ -15,7 +15,6 @@ public class FictionBook {
     String uri = "mongodb://localhost:27017/";
     public void findbook(){
         try{
-            //commit
             MongoClient mongoClient= MongoClients.create(uri);
             MongoDatabase database=mongoClient.getDatabase("Library");
             MongoCollection<Document> booksCollection = database.getCollection("Books");
