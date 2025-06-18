@@ -18,6 +18,7 @@ public class Main {
             System.out.println("2. Deposit into your account.");
             System.out.println("3. Withdraw from your account.");
             System.out.println("4. Check your account balance.");
+            System.out.println("5. Transfer.");
             int ch;
             ch=scan.nextInt();
             switch(ch){
@@ -32,6 +33,9 @@ public class Main {
                     break;
                 case 4:
                     acnt.checkbal();
+                    break;
+                case 5:
+                    acnt.Transfer();
                     break;
 
 

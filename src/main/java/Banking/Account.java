@@ -182,7 +182,73 @@ public class Account {
     }
     public void Transfer()
     {
+        Scanner scan= new Scanner(System.in);
+        String uri = "mongodb://localhost:27017/";
+        try{
 
+            MongoClient mongoClient= MongoClients.create(uri);
+            MongoDatabase database=mongoClient.getDatabase("Banking");
+            MongoCollection<Document> booksCollection = database.getCollection("Account");
+
+            System.out.println("Enter your Account number: ");
+            String accno= scan.nextLine();
+
+            System.out.println("Enter Receivers account number: ");
+            String recev= scan.nextLine();
+
+            System.out.println("Enter the Transfer amount: ");
+            double transf= scan.nextInt();
+            double curbal=0,newbal=0;
+
+
+
+            Bson filter = Filters.eq("Account num",accno);
+            Bson projection = Projections.fields(Projections.include("Balance"));
+            Document doc= booksCollection.find(filter).projection(projection).first();
+
+            curbal=doc.getDouble("Balance");
+            System.out.println("Current Balance: "+ curbal );
+            if(curbal<transf){
+                throw new Exception("Insufficient Funds for transfer.");
+            }
+            Bson filter2 = Filters.eq("Account num",recev);
+            Bson projection2 = Projections.fields(Projections.include("Balance"));
+            Document doc2= booksCollection.find(filter2).projection(projection2).first();
+            newbal=doc2.getDouble("Balance");
+            newbal=transf+newbal;
+
+            Bson filter1 = Filters.eq("Account num",recev);
+            Bson update= Updates.set("Balance",newbal);
+            booksCollection.updateOne(filter1, update);
+
+            System.out.println("Successfully Transfered:"+ transf);
+//                TimeUnit.SECONDS.sleep(3);
+
+
+
+            Bson filter4 = Filters.eq("Account num",accno);
+            Bson projection4 = Projections.fields(Projections.include("Balance"));
+            Document doc4= booksCollection.find(filter4).projection(projection4).first();
+            newbal=doc4.getDouble("Balance");
+
+            curbal=curbal-transf;
+
+            Bson filter5 = Filters.eq("Account num",accno);
+            Bson update2= Updates.set("Balance",curbal);
+            booksCollection.updateOne(filter5, update2);
+
+
+            Bson filter3 = Filters.eq("Account num",accno);
+            Bson projection3 = Projections.fields(Projections.include("Balance"));
+            Document doc3= booksCollection.find(filter3).projection(projection3).first();
+            newbal=doc3.getDouble("Balance");
+            System.out.println("New Balance: "+ newbal );
+
+
+        }
+        catch (Exception e){
+            System.out.println("Account doesn't exist.");
+        }
 
     }
 
