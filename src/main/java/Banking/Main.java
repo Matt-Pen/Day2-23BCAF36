@@ -7,7 +7,9 @@ public class Main {
     {
         Account acnt= new Account();
 //        acnt.createaccount();
-        acnt.deposit();
+//        acnt.deposit();
+//        acnt.withdrawal();
+        acnt.checkbal();
 
     }
 

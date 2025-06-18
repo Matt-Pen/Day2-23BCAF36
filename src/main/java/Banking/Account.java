@@ -122,17 +122,23 @@ public class Account {
             Bson filter = Filters.eq("Account num",accno);
             Bson projection = Projections.fields(Projections.include("Balance"));
             Document doc= booksCollection.find(filter).projection(projection).first();
-
+            if(doc==null){
+                throw  new Exception("Account Does not exist.");
+            }
             curbal=doc.getDouble("Balance");
 
             System.out.println("Current Balance: "+ curbal );
-            curbal=curbal+deposit;
+            curbal=curbal-deposit;
+            if(curbal<0){
+                System.out.println("Withdrawal amount exceeds bank balance");
+                throw new Exception("Invalid Withdraw amount");
+            }
 
             Bson filter1 = Filters.eq("Account num",accno);
             Bson update= Updates.set("Balance",curbal);
             booksCollection.updateOne(filter, update);
 
-            System.out.println("Successfully deposited.");
+            System.out.println("Successfully withdrawn.");
 //                TimeUnit.SECONDS.sleep(3);
 
             Bson filter2 = Filters.eq("Account num",accno);
@@ -144,8 +150,40 @@ public class Account {
 
         }
         catch (Exception e){
-            System.out.println("Account doesn't exist.");
+            System.out.println(e);
         }
 
     }
+    public void checkbal()
+    {
+        Scanner scan= new Scanner(System.in);
+        String uri = "mongodb://localhost:27017/";
+        try{
+
+            MongoClient mongoClient= MongoClients.create(uri);
+            MongoDatabase database=mongoClient.getDatabase("Banking");
+            MongoCollection<Document> booksCollection = database.getCollection("Account");
+
+            System.out.println("Enter your Account number: ");
+            String accno= scan.nextLine();
+            double newbal=0;
+            Bson filter2 = Filters.eq("Account num",accno);
+            Bson projection2 = Projections.fields(Projections.include("Balance"));
+            Document doc2= booksCollection.find(filter2).projection(projection2).first();
+            newbal=doc2.getDouble("Balance");
+            System.out.println("Current Balance: "+ newbal );
+
+
+        }
+        catch (Exception e){
+            System.out.println("Invalid Account number.");
+        }
+
+    }
+    public void Transfer()
+    {
+
+
+    }
+
 }
