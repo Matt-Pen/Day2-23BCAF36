@@ -47,8 +47,6 @@ public class FictionBook {
                     break;
 
                 case 3:
-                    System.out.println("Enter the Category of the Book:");
-
 
                     System.out.println("select the category of the book: ");
                     System.out.println("1. Fiction");
