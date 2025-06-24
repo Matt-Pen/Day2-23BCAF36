@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 public class FictionBook {
     Scanner scan= new Scanner(System.in);
-    String uri = "mongodb://localhost:27017/";
+    String uri = "mongodb://admin:admin@172.21.17.53:27017,172.21.17.54:27017,172.21.17.92:27017/";
     public void findbook(){
         try{
             MongoClient mongoClient= MongoClients.create(uri);
@@ -64,7 +64,9 @@ public class FictionBook {
                     Bson filter3= Filters.eq("Category",ctgr);
                     booksCollection.find(filter3).forEach(doc -> System.out.println(doc.toJson()));
                     break;
-                }
+                default:
+                    throw new IllegalStateException("Unexpected value: " + ch);
+            }
 
         }
         catch (Exception e) {
@@ -73,7 +75,7 @@ public class FictionBook {
     }
     public void deletebook(){
         Scanner scan= new Scanner(System.in);
-        String uri = "mongodb://localhost:27017/";
+        String uri = "mongodb://admin:admin@172.21.17.53:27017,172.21.17.54:27017,172.21.17.92:27017/";
         try{
             MongoClient mongoClient= MongoClients.create(uri);
             MongoDatabase database=mongoClient.getDatabase("Library");

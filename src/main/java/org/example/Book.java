@@ -17,7 +17,7 @@ public class Book {
     public void insertbook()
     {
         Scanner scan= new Scanner(System.in);
-        String uri = "mongodb://localhost:27017/";
+        String uri = "mongodb://admin:admin@172.21.17.53:27017,172.21.17.54:27017,172.21.17.92:27017/";
         try{
             MongoClient mongoClient= MongoClients.create(uri);
             MongoDatabase database=mongoClient.getDatabase("Library");
@@ -54,7 +54,7 @@ public class Book {
     }
     public void updatebook() {
         Scanner scan = new Scanner(System.in);
-        String uri = "mongodb://localhost:27017/";
+        String uri = "mongodb://admin:admin@172.21.17.53:27017,172.21.17.54:27017,172.21.17.92:27017/";
         try {
             MongoClient mongoClient = MongoClients.create(uri);
             MongoDatabase database = mongoClient.getDatabase("Library");
